@@ -1,17 +1,69 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+:root {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: italic;
+  color: rgb(0, 100, 113);
+  outline: none;
+  border: 1px solid rgb(0, 100, 113);
+  border-radius: 8px;
+  background-color: rgb(192, 237, 243);
+  padding: 0.2rem;
+}
+
+input {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: inherit;
+  margin-bottom: 1rem;
+  outline: none;
+  border: 1px solid rgb(0, 100, 113);
+  border-radius: 8px;
+  padding: 0.2rem;
+  text-align: center;
+}
+
+body {
   padding: 3rem;
 }
 
-main{
+main {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-ul, ol {
+
+ul,
+ol {
   padding-left: 2rem;
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: rgb(16, 136, 152);
+  margin-bottom: 1rem;
+}
+
+li button {
+  margin-inline: 0.1rem;
+}
+
+li span {
+  margin-right: 0.4rem;
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

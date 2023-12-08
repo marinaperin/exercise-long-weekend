@@ -5,24 +5,33 @@ import CustomList from "./components/CustomList";
 function App() {
   const [allLists, setAllLists] = useState([
     {
-      title: "Guests",
+      title: "Unsure",
       type: "ul",
-      list: ["Tizio", "Caio"],
+      list: ["Bagigio", "Gianni", "Paciugo"],
       value: "",
     },
     {
-      title: "Pets",
+      title: "Confirmed",
       type: "ul",
       list: ["Denki", "Yeon", "Jin"],
       value: "",
     },
     {
-      title: "To Do",
+      title: "Not Coming",
+      type: "ul",
+      list: ["Tizio", "Caio", "Sempronio"],
+      value: "",
+    },
+    {
+      title: "Things To Buy",
       type: "ol",
-      list: ["Groceries", "Laundry", "Dishes"],
+      list: ["Cake", "Drinks", "Dishes"],
       value: "",
     },
   ]);
+  const buttons = ["Remove", "Edit"];
+  const [newValue, setNewValue] = useState();
+  const [isNewValue, setIsNewValue] = useState(false);
 
   return (
     <main>
@@ -38,6 +47,7 @@ function App() {
                 value={value}
                 onChange={(e) => {
                   obj.value = e.target.value;
+                  setNewValue(e.target.value);
                   setAllLists([...allLists]);
                 }}
               />
@@ -47,7 +57,7 @@ function App() {
                   onClick={() => {
                     obj.list = [...list, value];
                     setAllLists([...allLists]);
-                    obj.value = '';
+                    obj.value = "";
                   }}
                 >
                   Add
@@ -55,7 +65,29 @@ function App() {
               </span>
             </div>
             <div key={`objListWrapper${i}`}>
-              <CustomList key={`list${i}`} type={type} list={list} />
+              <CustomList
+                key={`list${i}`}
+                type={type}
+                remove={(ix) => {
+                  obj.list = list.filter((el) => el !== list[ix]);
+                  setAllLists([...allLists]);
+                }}
+                edit={(ix) => {
+                  setNewValue(obj.list[ix]);
+                  obj.value = obj.list[ix];
+                  setNewValue(obj.value);
+                  setIsNewValue(true);
+                }}
+                newValue={isNewValue}
+                saveNew={(ix) => {
+                  obj.list[ix] = newValue;
+                  setAllLists([...allLists]);
+                  obj.value = "";
+                  setIsNewValue(false);
+                }}
+                list={list}
+                buttons={buttons}
+              />
             </div>
           </div>
         );
