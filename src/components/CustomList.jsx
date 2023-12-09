@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function ({
   type,
   list,
@@ -7,6 +9,8 @@ export default function ({
   newValue,
   saveNew,
 }) {
+  const [isEdit, setIsEdit] = useState(false);
+  
   const listMap = list.map((string, ix) => (
     <li key={`string${ix}`}>
       <span>{string}</span>
@@ -14,17 +18,23 @@ export default function ({
         <button
           key={`button${i}`}
           onClick={() => {
-            button === "Remove" ? remove(ix) : edit(ix);
+            if(button === "Remove"){
+              remove(ix)
+            }else{
+              edit(ix); 
+              setIsEdit(true);
+            }
           }}
         >
           {button}
         </button>
       ))}
       <span>
-        {newValue ? (
+        {isEdit && newValue ? (
           <button
             onClick={() => {
               saveNew(ix);
+              setIsEdit(false);
             }}
           >
             Save

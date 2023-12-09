@@ -7,7 +7,7 @@ function App() {
     {
       title: "Unsure",
       type: "ul",
-      list: ["Bagigio", "Gianni", "Paciugo"],
+      list: ["Bagigio", "Gianni", "Paciugo", "Secco"],
       value: "",
     },
     {
